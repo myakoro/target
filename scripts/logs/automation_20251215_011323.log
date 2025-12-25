@@ -1,0 +1,13 @@
+2025-12-15 01:13:23,899 - INFO - Loaded calibrated coordinates: {'race_list_1r': [78, 211], 'odds_btn': [764, 119]}
+2025-12-15 01:13:23,900 - INFO - Starting TARGET Automation...
+2025-12-15 01:13:23,900 - INFO - Please maximize TARGET window and bring it to front.
+2025-12-15 01:13:23,900 - INFO - Automation will start in 5 seconds...
+2025-12-15 01:13:28,901 - INFO - Key Nav: Venue 1 (Reset=Nonex1 -> Down=0, Click=True)
+2025-12-15 01:13:32,909 - INFO - Waiting 5.0s for transition...
+2025-12-15 01:13:37,910 - INFO - --- Processing Race 1 ---
+2025-12-15 01:13:37,911 - INFO - Using calibrated Race 1 pos: [78, 211]
+2025-12-15 01:13:37,912 - INFO - Key Nav: Race 1 (Reset=homex1 -> Down=0, Click=True)
+2025-12-15 01:13:43,173 - INFO - Waiting 3.0s for transition...
+2025-12-15 01:13:46,175 - INFO - Clicking: Odds Button (Calibrated) at (764, 119)
+2025-12-15 01:13:49,184 - INFO - Clicking: Jikei Tab at (575, 125)
+2025-12-15 01:13:52,199 - INFO - Clicking: JV Get Button (Waiting 30s) at (245, 95)

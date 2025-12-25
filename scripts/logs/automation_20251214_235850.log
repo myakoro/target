@@ -1,0 +1,26 @@
+2025-12-14 23:58:50,457 - INFO - Starting TARGET Automation...
+2025-12-14 23:58:50,458 - INFO - Please maximize TARGET window and bring it to front.
+2025-12-14 23:58:50,458 - INFO - Automation will start in 5 seconds...
+2025-12-14 23:58:55,458 - INFO - Click & Enter: Venue 1 at (200, 140)
+2025-12-14 23:59:02,174 - INFO - --- Processing Race 1 ---
+2025-12-14 23:59:02,175 - INFO - Click & Enter: Race 1 at (35, 190)
+2025-12-14 23:59:08,887 - INFO - Clicking: Odds Button at (275, 95)
+2025-12-14 23:59:11,889 - INFO - Clicking: Jikei Tab at (575, 125)
+2025-12-14 23:59:14,899 - INFO - Clicking: JV Get Button (Waiting 30s) at (245, 95)
+2025-12-14 23:59:45,916 - INFO - Exporting CSV...
+2025-12-14 23:59:51,924 - INFO - Pressing OK...
+2025-12-14 23:59:53,946 - INFO - Closing windows...
+2025-12-14 23:59:57,952 - INFO - --- Processing Race 2 ---
+2025-12-14 23:59:57,952 - INFO - Click & Enter: Race 2 at (35, 206)
+2025-12-15 00:00:04,663 - INFO - Clicking: Odds Button at (275, 95)
+2025-12-15 00:00:07,678 - INFO - Clicking: Jikei Tab at (575, 125)
+2025-12-15 00:00:10,692 - INFO - Clicking: JV Get Button (Waiting 30s) at (245, 95)
+2025-12-15 00:00:41,712 - INFO - Exporting CSV...
+2025-12-15 00:00:47,719 - INFO - Pressing OK...
+2025-12-15 00:00:49,721 - INFO - Closing windows...
+2025-12-15 00:00:53,728 - INFO - --- Processing Race 3 ---
+2025-12-15 00:00:53,728 - INFO - Click & Enter: Race 3 at (35, 222)
+2025-12-15 00:01:00,440 - INFO - Clicking: Odds Button at (275, 95)
+2025-12-15 00:01:03,452 - INFO - Clicking: Jikei Tab at (575, 125)
+2025-12-15 00:01:06,468 - INFO - Clicking: JV Get Button (Waiting 30s) at (245, 95)
+2025-12-15 00:01:06,475 - ERROR - Error in race 3: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.

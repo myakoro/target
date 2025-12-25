@@ -1,0 +1,9 @@
+2025-12-14 23:04:06,782 - INFO - Starting TARGET Automation...
+2025-12-14 23:04:06,782 - INFO - Please maximize TARGET window and bring it to front.
+2025-12-14 23:04:06,782 - INFO - Automation will start in 5 seconds...
+2025-12-14 23:04:11,783 - INFO - Double Clicking: Venue 1 at (200, 135)
+2025-12-14 23:04:16,904 - INFO - --- Processing Race 1 ---
+2025-12-14 23:04:16,905 - INFO - Double Clicking: Race 1 at (35, 190)
+2025-12-14 23:04:22,020 - INFO - Clicking: Odds Button at (275, 95)
+2025-12-14 23:04:25,024 - INFO - Clicking: Jikei Tab at (575, 125)
+2025-12-14 23:04:28,027 - INFO - Clicking: JV Get Button (Waiting 30s) at (245, 95)

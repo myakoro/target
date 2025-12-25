@@ -1,0 +1,54 @@
+{
+    "race_list_1r": [
+        208,
+        143
+    ],
+    "odds_btn": [
+        753,
+        84
+    ],
+    "jikei_tab": [
+        1112,
+        126
+    ],
+    "jv_get_btn": [
+        320,
+        84
+    ],
+    "venue_list_1st": [
+        208,
+        107
+    ],
+    "race_list_1st": [
+        62,
+        177
+    ],
+    "csv_menu_item": [
+        433,
+        276
+    ],
+    "close_odds_x": [
+        1912,
+        35
+    ],
+    "next_race_btn": [
+        41,
+        86
+    ],
+    "close_race_x": [
+        1914,
+        35
+    ],
+    "venue_list_2nd": [
+        318,
+        107
+    ],
+    "venue_list_3rd": [
+        436,
+        109
+    ],
+    "venue_list_row2": [
+        324,
+        125
+    ]
+}
