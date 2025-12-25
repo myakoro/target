@@ -23,13 +23,26 @@ logger = logging.getLogger(__name__)
 
 # PyAutoGUI設定
 pyautogui.FAILSAFE = True  # マウスを左上に持っていくと強制終了
-pyautogui.PAUSE = 0.1      # コマンド間の待機時間を大幅短縮（0.5 -> 0.1）
+pyautogui.PAUSE = 0.2      # 少し安全な値に調整
+
+def is_esc_pressed():
+    """Escキーが押されているか判定"""
+    return win32api.GetAsyncKeyState(win32con.VK_ESCAPE) != 0
 
 def check_stop_signal():
-    """Escキーが押されているかチェック"""
-    if win32api.GetAsyncKeyState(win32con.VK_ESCAPE) != 0:
+    """Escキー検知時に即座に終了"""
+    if is_esc_pressed():
         logger.warning("!!! Escキーによる緊急停止を検知しました !!!")
+        # 連続してキー入力を送らないように少し待つ
+        time.sleep(0.5)
         sys.exit(0)
+
+def smart_sleep(seconds):
+    """スリープ中も0.1秒ごとにEscキーをチェックする"""
+    start_time = time.time()
+    while time.time() - start_time < seconds:
+        check_stop_signal()
+        time.sleep(0.1)
 
 def get_list_screenshot(region):
     """リスト領域のスクリーンショットを取得"""
@@ -57,33 +70,31 @@ def run_automation():
     num_venues = 500  # 実質無限（自動停止に任せる）
     num_races = 12    # 全12レース取得
     
-    # 画面変化検知用の領域 (venue_list_1stの周辺 400x400程度を監視)
+    # 画面変化検知用の領域
     v_x, v_y = coords['venue_list_1st']
     detect_region = (max(0, v_x - 50), max(0, v_y - 50), 400, 400)
 
-    logger.info("=== TARGET 全自動取得プログラム (高速機敏版) ===")
-    logger.info("垂直リストの1行目を選択した状態で待機してください。")
-    logger.info("【停止方法】 Escキーを長押し または マウスを左上スミへ")
+    logger.info("=== TARGET 全自動取得プログラム (安全・確実版) ===")
+    logger.info("【緊急停止】 Escキーを長押し してください")
     logger.info("5秒後に開始します...")
-    time.sleep(5)
+    smart_sleep(5)
 
     try:
         for v_idx in range(num_venues):
-            check_stop_signal() # 緊急停止チェック
+            check_stop_signal()
             logger.info(f"========== 開催 {v_idx + 1} 処理中 ==========")
             
-            # 1. 現在のリスト状態を撮影
+            # 現在のリスト状態を撮影
             pre_img = get_list_screenshot(detect_region)
 
             # 手順1: 会場を開く
             pyautogui.press('enter')
-            time.sleep(1.5)  # 3s -> 1.5s
-            check_stop_signal()
-
+            smart_sleep(2.0)
+            
             # 手順2: 1Rを選択
             r_x, r_y = coords['race_list_1st']
             pyautogui.doubleClick(r_x, r_y)
-            time.sleep(1.5)  # 3s -> 1.5s
+            smart_sleep(2.0)
 
             # 【レースループ】
             for r_idx in range(num_races):
@@ -92,52 +103,50 @@ def run_automation():
                 
                 # 手順3: オッズボタン
                 pyautogui.click(coords['odds_btn'])
-                time.sleep(0.8) # 2s -> 0.8s
+                smart_sleep(1.0)
                 
-                # 手順4: 単複時系タブ
+                # 手順4: 単複時系タグ
                 pyautogui.click(coords['jikei_tab'])
-                time.sleep(0.4) # 1s -> 0.4s
+                smart_sleep(0.5)
                 
-                # 手順5: JVオッズ取得
+                # 手順5: JVオッズ取得 (ユーザー指定の2秒)
                 pyautogui.click(coords['jv_get_btn'])
-                time.sleep(1.2) # 2s -> 1.2s
+                smart_sleep(2.0)
 
                 # 手順6-7: メニュー
                 pyautogui.hotkey('alt', 'f')
-                time.sleep(0.3) # 0.5s -> 0.3s
+                smart_sleep(0.5)
                 pyautogui.press('o')
-                time.sleep(0.5) # 1s -> 0.5s
+                smart_sleep(1.0)
                 
-                # 手順8-9: CSV保存
+                # 手順8-9: CSV保存 (ユーザー指定の0.5秒 + 完了待ち2秒)
                 pyautogui.click(coords['csv_menu_item'])
-                time.sleep(0.2) # 0.5s -> 0.2s
+                smart_sleep(0.5)
                 pyautogui.press('enter')
-                time.sleep(0.8) # 2s -> 0.8s
+                smart_sleep(2.0)
 
                 # 手順10: オッズ画面を閉じる
                 pyautogui.click(coords['close_odds_x'])
-                time.sleep(0.3) # 1s -> 0.3s
+                smart_sleep(0.5)
 
                 # 手順11: 次のレースへ
                 if r_idx < num_races - 1:
                     pyautogui.click(coords['next_race_btn'])
-                    time.sleep(0.8) # 2s -> 0.8s
+                    smart_sleep(2.0)
 
             # 手順13 & 14: 一覧へ戻る
             pyautogui.click(coords['close_race_x'])
-            time.sleep(1.0) # 2s -> 1.0s
+            smart_sleep(1.0)
             pyautogui.click(coords['close_race_x'])
-            time.sleep(1.5) # 3s -> 1.5s
+            smart_sleep(2.0)
 
             # 次の開催へ移動
             logger.info("次の開催へ移動...")
             pyautogui.press('down')
-            time.sleep(0.8) # 1.5s -> 0.8s
+            smart_sleep(1.0)
             
-            # 2. 移動後のリスト状態を撮影して比較
+            # 移動後の比較
             post_img = get_list_screenshot(detect_region)
-            
-            # 画像の差分があるかチェック
             diff = ImageChops.difference(pre_img, post_img)
             if not diff.getbbox():
                 logger.info("!!! リストの末尾に達しました。自動停止します !!!")
